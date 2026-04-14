@@ -19,17 +19,21 @@ set(CXX_SOURCES
 
 ### Configure compiler options
 set(CMAKE_CXX_STANDARD 23)
-add_compile_options("-Wunicode") # "-Wall" "-Wextra")
+add_compile_options("-Wunicode" "-Wall" "-Wextra")
 
 ### Make the include directory
 make_directory("${CMAKE_SOURCE_DIR}/${INCLUDE_DIR}")
 
-# Configure linting
-set(CMAKE_CXX_CLANG_TIDY 
-  clang-tidy;
-  -header-filter=${INCLUDE_DIR};
-  -checks=clang-diagnostic-*,clang-analyzer-*,*,-altera*,-fuchsia*,-llvmlibc-restrict-system-libc-headers,-llvmlibc-implementation-in-namespace,-llvmlibc-callee-namespace,-modernize-use-trailing-return-type;
-)
+### Configure linting
+option(ENABLE_LINTING "Enable linting with clang-tidy" ON)
+
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME AND ENABLE_LINTING)
+  set(CMAKE_CXX_CLANG_TIDY 
+    clang-tidy;
+    -header-filter=${INCLUDE_DIR};
+    -checks=clang-diagnostic-*,clang-analyzer-*,*,-altera*,-fuchsia*,-llvmlibc-restrict-system-libc-headers,-llvmlibc-implementation-in-namespace,-llvmlibc-callee-namespace,-modernize-use-trailing-return-type;
+  )
+endif()
 
 
 ### Find dependancies

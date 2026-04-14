@@ -17,8 +17,7 @@ The template includes:
 
 Clone the repository, 
 ```bash
-git clone https://github.com/dawiedotcom/cpp_project_template.cpp
-mv cpp_project_template <my_new_project>
+git clone https://github.com/dawiedotcom/cpp_project_template.cpp <my_new_project>
 cd <my_new_project>
 ```
 Change the name of the project in the top of `CMakeLists.txt`.
