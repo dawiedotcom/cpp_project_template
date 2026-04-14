@@ -66,7 +66,7 @@ set(TEST_CXX_SOURCES
   # Unit tests
   <new_unit_test>.cpp
   # Code under test
-  <code_under_test>.cpp
+  ../src/<code_under_test>.cpp
 )
 ```
 
